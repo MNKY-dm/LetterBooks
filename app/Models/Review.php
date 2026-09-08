@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Review extends Model
+{
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function book(): BelongsTo {
+        return $this->belongsTo(Book::class);
+    }
+
+    public function log(): BelongsTo
+    {
+        return $this->belongsTo(Log::class);
+    }
+
+    public function likedByUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'review_likes', 'review_id', 'user_id');
+    }
+
+    protected $fillable = [
+        'text',
+    ];
+}
