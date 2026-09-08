@@ -7,13 +7,35 @@
 
         <form method="POST" action="{{ route('register.store') }}" class="flex flex-col gap-6">
             @csrf
+            <!-- Username -->
+            <flux:input
+                name="username"
+                :label="__('Username')"
+                :value="old('username')"
+                type="text"
+                required
+                autofocus
+                autocomplete="username"
+                :placeholder="__('Full username')"
+            />
+
+            <!-- Surname -->
+            <flux:input
+                name="surname"
+                :label="__('Surname')"
+                :value="old('surname')"
+                type="text"
+                autofocus
+                autocomplete="surname"
+                :placeholder="__('Full surname')"
+            />
+
             <!-- Name -->
             <flux:input
                 name="name"
                 :label="__('Name')"
                 :value="old('name')"
                 type="text"
-                required
                 autofocus
                 autocomplete="name"
                 :placeholder="__('Full name')"
@@ -59,6 +81,7 @@
                     {{ __('Create account') }}
                 </flux:button>
             </div>
+            <flux:text class="text-xs">*You will have the possibility to chose more details about your profile in the "Profile" page.</flux:text>
         </form>
 
         <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
